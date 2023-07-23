@@ -2,3 +2,24 @@
     ViewBag.Title = "Home Page";
 }
  
+
+ 
+@foreach (var item in Model)
+{
+    <div class="col-lg-4">
+        <div class="img-thumbnail " style="width:400px" >
+            <img src="~/Assets/@item.Image" style="width:180px;height:180px;border-radius:10px"/>
+            <div>Name
+                <div><strong> @item.Name</strong></div></div>
+            <div>Model
+                <div><strong>@item.Model</strong></div></div>
+            <div>Category
+                <div><strong>@item.ProductCategory.Name</strong></div></div>
+            
+            <div>
+                <a class="btn btn-primary" style="border-radius:10px" href="@Url.Action("Details","OurProducts",new{id=item.Id})">Get Quotation</a>
+
+            </div>
+        </div>
+    </div>
+}

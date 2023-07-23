@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using IMarket.Models;
 
 namespace IMarket.Controllers
 {
@@ -10,7 +11,9 @@ namespace IMarket.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var db = new DbContext();
+            var Pro = db.Product.Where(x => x.IsDeleted == false).ToList();
+            return View(Pro);
         }
 
     }

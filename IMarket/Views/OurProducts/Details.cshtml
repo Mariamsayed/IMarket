@@ -1,8 +1,12 @@
-﻿@model IMarket.Models.Db.Product
+﻿@using IMarket.Models
+@model IMarket.Models.Db.Product
 
 @{
     ViewBag.Title = $"{Model.Name}";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var db = new DbContext();
+    var user = Convert.ToInt16(Session["UserId"]);
+    var GetRequest = db.Requests.Where(x => x.CustomerId == user && x.ProductId == Model.Id).OrderByDescending(x=>x.Id).ToList();
 }
 
  
@@ -37,6 +41,26 @@
         </div>
     </div>
 </div>
+
+
+ 
+@if (GetRequest.Any())
+{
+    <div class="panel panel-warning">
+        <div class="panel-heading"> My Request</div>
+        <div class="panel panel-body">
+            @foreach (var item in GetRequest)
+            {
+                <li>@item.Msg   <small> @item.Create</small>  </li>
+            }
+        </div>
+    </div>
+    <ul>
+
+
+    </ul>
+}
+
 
 <div class="panel panel-info">
     <div class="panel-heading">Send Request</div>
