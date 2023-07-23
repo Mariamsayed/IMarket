@@ -73,7 +73,7 @@ namespace IMarket.Areas.Admin.Controllers
         }
 
 
-        // PUT: api/ProductApi/5
+         
         [ResponseType(typeof(void))]
         public IHttpActionResult PutProduct(int id, Product product)
         {
@@ -108,7 +108,7 @@ namespace IMarket.Areas.Admin.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/ProductApi
+         
         [ResponseType(typeof(Product))]
         public IHttpActionResult PostProduct([FromUri]
              Product product)
@@ -123,7 +123,7 @@ namespace IMarket.Areas.Admin.Controllers
             return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
         }
 
-        // DELETE: api/ProductApi/5
+        
         [ResponseType(typeof(Product))]
         [System.Web.Http.Route("DeleteProduct")]
         public IHttpActionResult DeleteProduct(int id)
