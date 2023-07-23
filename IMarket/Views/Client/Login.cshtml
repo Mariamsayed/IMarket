@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+ 
+
+<div class="panel panel-info">
+    <div class="panel-heading">Login</div>
+
+    @using (@Html.BeginForm("Login", "Client",FormMethod.Post))
+    {
+        <div class="panel panel-body">
+
+
+            <div class="row">
+                <div class="col-lg-3">
+
+                    Email <input class="form-control" type="email" placeholder="Enter Your Email" name="Email" required />
+
+                    Password  <input class="form-control" type="password" placeholder="Enter Your password" name="Password" required />
+
+
+
+
+
+                </div>
+            </div>
+            
+        <div>if you don't have account   <a href="@Url.Action("Register","Client")">Register</a></div>
+
+        </div>
+        <div class="panel-footer">
+            <input type="submit" class="btn btn-success" value="Login"/>
+
+        </div>
+    }
+
+</div>

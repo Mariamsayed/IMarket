@@ -5,47 +5,34 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Details</h2>
+
 
 <div>
-    <h4>ProductCategory</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+  
+    
+    <div class="panel panel-info">
+        <div class="panel-heading">  <h4>Product Category</h4></div>
+        <div class="panel panel-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Create)
-        </dt>
+            </dl>
+        </div>
+        <div class="panel-footer">
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.Create)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastUpdate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastUpdate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsDeleted)
-        </dd>
-
-    </dl>
+        </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <hr />
+  
+</div>

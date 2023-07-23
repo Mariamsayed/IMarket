@@ -59,6 +59,9 @@ namespace IMarket.Areas.Admin.Controllers
                     Image.SaveAs(Server.MapPath("~/Assets/" + fileName));
                     product.Image = fileName;
                 }
+ 
+
+
                 product.IsDeleted = false;
                 product.Create=DateTime.Now;
                 product.LastUpdate=DateTime.Now;
@@ -92,10 +95,17 @@ namespace IMarket.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( Product product)
+        public ActionResult Edit( Product product, HttpPostedFileBase Image)
         {
             if (ModelState.IsValid)
             {
+                if (Image != null)
+                {
+                    var fileName = Image.FileName;
+                    Image.SaveAs(Server.MapPath("~/Assets/" + fileName));
+                    product.Image = fileName;
+                }
+
                 product.LastUpdate=DateTime.Now;
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();

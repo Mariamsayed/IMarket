@@ -9,48 +9,52 @@
     <div class="panel panel-body">
         <div class="row">
 
-            @if(Model.Image!=null)
-                {
-                    <img  src="~/Assets/@Model.Image" style="width:180px" class="img-thumbnail"/>
-                }
+            @if (Model.Image != null)
+            {
+                <img src="~/Assets/@Model.Image" style="width:180px" class="img-thumbnail" />
+            }
             <div class="col-md-6">
-                <div>Category</div>
-                @Model.ProductCategory.Name
+                <div style="color:brown">Category</div>
+                <label>@Model.ProductCategory.Name</label>
+            </div>
+            <div class="col-md-6">
+                <div style="color:brown">Name</div>
+                <label>@Model.Name</label>
             </div>
 
             <div class="col-md-6">
-                <div>Name</div>
-                @Model.Name
+                <div style="color:brown">Price</div>
+                <label>@Model.Price</label>
             </div>
 
             <div class="col-md-6">
-                <div>Price</div>
-                @Model.Price
+                <div style="color:brown">Qty</div>
+                <label>@Model.Qty</label>
             </div>
 
             <div class="col-md-6">
-                <div>Qty</div>
-                @Model.Qty
+                <div style="color:brown">SKU</div>
+                <label>@Model.SKU</label>
             </div>
 
             <div class="col-md-6">
-                <div>SKU</div>
-                @Model.SKU
+                <div style="color:brown">Model</div>
+                <label>@Model.Model</label>
             </div>
-
 
 
             <div class="col-md-12">
-                <div>Description</div>
-                @Model.Description
+                <div style="color:brown">Description</div>
+                <label>@Model.Description</label>
             </div>
-            
+
 
         </div>
     </div>
 </div>
  
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a class="btn btn-primary" href="@Url.Action("Edit","Products",new{id = Model.Id} )">Update</a>
+    
+    <a class="btn btn-default" href="@Url.Action("Index", "Products")">Back to List</a>
 </p>

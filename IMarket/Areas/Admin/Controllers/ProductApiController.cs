@@ -28,7 +28,7 @@ namespace IMarket.Areas.Admin.Controllers
         [System.Web.Http.Route("GetListProduct")]
         public object GetListProduct()
         {
-            var le = db.Product.Where(a => a.IsDeleted == false).Select(a => new 
+            var pro = db.Product.Where(a => a.IsDeleted == false).Select(a => new 
                 
                 { Id = a.Id,
                     Name = a.Name,
@@ -39,12 +39,9 @@ namespace IMarket.Areas.Admin.Controllers
 
                 }
             ).ToList();
-            return Json(le);
+            return Json(pro);
         }
-
-
-
- 
+        
 
         [System.Web.Http.Route("GetProduct")]
         [System.Web.Http.HttpGet]
