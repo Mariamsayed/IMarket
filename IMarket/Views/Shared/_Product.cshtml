@@ -1,0 +1,17 @@
+﻿@using IMarket.Models
+@model int?
+@{
+    var db = new DbContext();
+    var user = Convert.ToInt16(Session["UserId"]);
+   
+    var product = db.Requests.Where(x => x.ProductId == Model &&x.CustomerId==user);
+} 
+<div class="panel panel-info">
+    <div class="panel-heading"> This is a partial View</div>
+    <div class="panel panel-body">
+        @foreach (var item in product)
+        {
+            <div>@item.Msg</div>
+        }
+    </div>
+</div>

@@ -68,3 +68,10 @@ C:\Users\Developer- 03\source\repos\IMarket\IMarket\bin\roslyn\System.Buffers.dl
 C:\Users\Developer- 03\source\repos\IMarket\IMarket\bin\roslyn\System.Memory.dll
 C:\Users\Developer- 03\source\repos\IMarket\IMarket\bin\roslyn\System.Numerics.Vectors.dll
 C:\Users\Developer- 03\source\repos\IMarket\IMarket\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Developer- 03\source\repos\IMarket\IMarket\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Developer- 03\source\repos\IMarket\IMarket\bin\Unity.Abstractions.dll
+C:\Users\Developer- 03\source\repos\IMarket\IMarket\bin\Unity.Container.dll
+C:\Users\Developer- 03\source\repos\IMarket\IMarket\bin\Unity.Mvc5.dll
+C:\Users\Developer- 03\source\repos\IMarket\IMarket\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Developer- 03\source\repos\IMarket\IMarket\bin\Unity.Abstractions.pdb
+C:\Users\Developer- 03\source\repos\IMarket\IMarket\bin\Unity.Container.pdb

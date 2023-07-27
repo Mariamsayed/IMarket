@@ -5,16 +5,16 @@
     ViewBag.Title = $"{Model.Name}";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var db = new DbContext();
-    var user = Convert.ToInt16(Session["UserId"]);
-    var GetRequest = db.Requests.Where(x => x.CustomerId == user && x.ProductId == Model.Id).OrderByDescending(x=>x.Id).ToList();
+
+    
 }
 
- 
+
 <div class="panel panel-info">
     <div class="panel-heading">@Model.Name</div>
     <div class="panel panel-body">
         <div class="row">
-            
+
             <div class="col-lg-4">
                 <div>Name</div>
                 <div>@Model.Name</div>
@@ -23,8 +23,8 @@
                 <div>Price</div>
                 <div>@Model.Price</div>
             </div>
-            
-            
+
+
             <div class="col-lg-4">
                 <div>Model</div>
                 <div>@Model.Model</div>
@@ -34,52 +34,37 @@
                 <div>Description</div>
                 <div>@Model.Description</div>
             </div>
-            
-            
-            
+
+
+
 
         </div>
     </div>
 </div>
 
+@Html.Partial("_Product",Model.Id)
 
  
-@if (GetRequest.Any())
-{
-    <div class="panel panel-warning">
-        <div class="panel-heading"> My Request</div>
-        <div class="panel panel-body">
-            @foreach (var item in GetRequest)
-            {
-                <li>@item.Msg   <small> @item.Create</small>  </li>
-            }
-        </div>
-    </div>
-    <ul>
-
-
-    </ul>
-}
 
 
 <div class="panel panel-info">
     <div class="panel-heading">Send Request</div>
-@using (@Html.BeginForm("Request","OurProducts",FormMethod.Post))
-{
-    if (@TempData["Requests"]!=null)
+    @using (@Html.BeginForm("Request", "OurProducts", FormMethod.Post))
     {
-        <div class="alert alert-success">@TempData["Requests"]</div>
-    }
-    <div class="panel panel-body">
+        if (@TempData["Requests"] != null)
+        {
+            <div class="alert alert-success">@TempData["Requests"]</div>
+        }
+        <div class="panel panel-body">
 
             <input type="hidden" name="ProductId" value="@Model.Id" />
-                                                                   
+
             <textarea class="form-control" name="Msg" cols="2" role="2" placeholder="Please Enter you Message"></textarea>
-      
-    </div>
-    <div class="panel-footer">
-        <input type="submit"  value="Save" class="btn btn-success"/>
-       
-    </div>
-}
+
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Save" class="btn btn-success" />
+
+        </div>
+    }
 </div>

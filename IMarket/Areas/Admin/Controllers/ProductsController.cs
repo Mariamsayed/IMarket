@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using IMarket.InterFace;
 using IMarket.Models;
 using IMarket.Models.Db;
 using DbContext = IMarket.Models.DbContext;
@@ -17,21 +18,29 @@ namespace IMarket.Areas.Admin.Controllers
     {
         private DbContext db = new DbContext();
 
-        // GET: Admin/Products
-        public ActionResult Index()
+        private readonly IProduct _Product;
+
+        public ProductsController(IProduct product)
         {
-            var product = db.Product.Where(x=>x.IsDeleted==false).Include(p => p.ProductCategory);
-            return View(product.ToList());
+            _Product = product;
         }
 
+
+
+        public ActionResult Index()
+        {
+            var product_ = _Product.GetAllProducts();
+            return View();
+        }
+        
         // GET: Admin/Products/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Product.Find(id);
+            var product = _Product.GetProductById(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -59,15 +68,8 @@ namespace IMarket.Areas.Admin.Controllers
                     Image.SaveAs(Server.MapPath("~/Assets/" + fileName));
                     product.Image = fileName;
                 }
- 
+                 _Product.AddProduct(product);
 
-
-                product.IsDeleted = false;
-                product.Create=DateTime.Now;
-                product.LastUpdate=DateTime.Now;
-                 
-                db.Product.Add(product);
-                db.SaveChanges();
                 TempData["Product"] = "Car has been added ";
                 return RedirectToAction("Index");
             }
@@ -77,13 +79,13 @@ namespace IMarket.Areas.Admin.Controllers
         }
 
         // GET: Admin/Products/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Product.Find(id);
+            var product =  _Product.GetProductById(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -105,10 +107,8 @@ namespace IMarket.Areas.Admin.Controllers
                     Image.SaveAs(Server.MapPath("~/Assets/" + fileName));
                     product.Image = fileName;
                 }
+                _Product.UpdateProduct(product);
 
-                product.LastUpdate=DateTime.Now;
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
                 TempData["Product"] = $"car {product.Name} has been Updated ";
                 return RedirectToAction("Index");
             }
@@ -117,13 +117,14 @@ namespace IMarket.Areas.Admin.Controllers
         }
 
         // GET: Admin/Products/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Product.Find(id);
+
+            var product = _Product.GetProductById(id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -136,10 +137,7 @@ namespace IMarket.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            var product = db.Product.Find(id);
-            product.IsDeleted=true;
-            db.Product.AddOrUpdate(product);
-            db.SaveChanges();
+            _Product.DeleteProduct(id);
             return RedirectToAction("Index");
         }
 

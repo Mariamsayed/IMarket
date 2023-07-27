@@ -9,6 +9,7 @@ namespace IMarket.Models.Db
 {
     public class Product:BaseEntity 
     {
+
         [Required(ErrorMessage = "Please Enter Product Name")]
         public string Name { get; set; }
         public string Description { get; set; }
